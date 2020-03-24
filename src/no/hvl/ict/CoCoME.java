@@ -1,5 +1,7 @@
 package no.hvl.ict;
 
+/* Main Cashdesk implementation */
+
 public class CoCoME implements CoCoME_if {
 
 	public double total = 0;
@@ -21,9 +23,10 @@ public class CoCoME implements CoCoME_if {
 		total = 0;
 		items = 0;
 		inProgress = true;
+		paying = false;
 	}
 	public void enterItem(Barcode code, int qty) {
-		assert inProgress;
+		assert inProgress && !paying;
 		assert !express || items < 8;
 		total = total + qty * code.getPrice();
 		items++;
